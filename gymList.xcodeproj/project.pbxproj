@@ -6,7 +6,12 @@
 	objectVersion = 77;
 	objects = {
 
+/* Begin PBXBuildFile section */
+		330E6B152E2646F3004B47C4 /* ExerciseData.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 330E6B132E2646F3004B47C4 /* ExerciseData.xcdatamodeld */; };
+/* End PBXBuildFile section */
+
 /* Begin PBXFileReference section */
+		330E6B142E2646F3004B47C4 /* ExerciseData.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = ExerciseData.xcdatamodel; sourceTree = "<group>"; };
 		334132492E1CEF7C00AC7503 /* gymList.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = gymList.app; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -45,6 +50,7 @@
 		334132402E1CEF7C00AC7503 = {
 			isa = PBXGroup;
 			children = (
+				330E6B132E2646F3004B47C4 /* ExerciseData.xcdatamodeld */,
 				3341324B2E1CEF7C00AC7503 /* gymList */,
 				3341324A2E1CEF7C00AC7503 /* Products */,
 			);
@@ -132,6 +138,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				330E6B152E2646F3004B47C4 /* ExerciseData.xcdatamodeld in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -337,6 +344,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		330E6B132E2646F3004B47C4 /* ExerciseData.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				330E6B142E2646F3004B47C4 /* ExerciseData.xcdatamodel */,
+			);
+			currentVersion = 330E6B142E2646F3004B47C4 /* ExerciseData.xcdatamodel */;
+			path = ExerciseData.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = 334132412E1CEF7C00AC7503 /* Project object */;
 }

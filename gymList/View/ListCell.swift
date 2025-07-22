@@ -24,10 +24,15 @@ class ListCell: UITableViewCell {
         setImageConstraints()
         setTitleConstraints()
     }
-    func set(image: Exercise) {
+    func set(image: ExerciseEntity) {
+    
+        if let imageData = image.muscleImageData {
+            listImageView.image = UIImage(data: imageData)
         
-        listImageView.image = UIImage(named: image.muscleGroup)
-        
+        } else {
+            listImageView.image = UIImage(systemName: "photo")
+        }
+     
         listLabel.text = image.muscleGroup
     }
     
@@ -39,7 +44,7 @@ class ListCell: UITableViewCell {
     func configView() {
         
         listImageView.layer.cornerRadius = 40
-        listLabel.clipsToBounds = true
+        listImageView.clipsToBounds = true
         
     }
     func configTitle() {

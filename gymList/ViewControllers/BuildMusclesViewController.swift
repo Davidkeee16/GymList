@@ -10,13 +10,13 @@ import UIKit
 class BuildMusclesViewController: UIViewController {
     
 
-    var exercises: [Exercise] = []
+    var exercises: [ExerciseEntity] = []
     
-    var getList: [Exercise] {
+    var getList: [ExerciseEntity] {
         return exercises
     }
     
-    var filteredExercise: [Exercise] = []
+    var filteredExercise: [ExerciseEntity] = []
     var searchController = UISearchController(searchResultsController: nil)
     
     struct Cells {
@@ -28,18 +28,33 @@ class BuildMusclesViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        
+        title = "Build muscles"
         configTableView()
         setupSearchBar()
         
-        Exercise.loadBuildMuscles { [weak self] result in
-        self?.exercises = result
-        self?.tableView.reloadData()
         
+        loadData()
+                
+       
+    }
+    private func loadData() {
         
+        exercises = CoreDataManager.shared.fetchExercise()
         
+        if exercises.isEmpty {
+            ExerciseAPI.fetchAndSaveExercises(from: "build-muscle") { [weak self] in
+                DispatchQueue.main.async {
+                    self?.exercises = CoreDataManager.shared.fetchExercise()
+                    self?.tableView.reloadData()
+                }
+                
+            }
+        } else {
+            tableView.reloadData()
         }
     }
+    
+
     
     func configTableView() {
         view.addSubview(tableView)
@@ -90,8 +105,15 @@ extension BuildMusclesViewController: UITableViewDataSource, UITableViewDelegate
     }
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
+        let vc = ExerciseInfoViewController()
+        vc.exercise = exercises[indexPath.row]
+        
+        navigationController?.pushViewController(vc, animated: false)
+        
+        
         
         let inSearchMode = self.inSearchMode(searchController)
+        
         
     }
     
@@ -147,13 +169,15 @@ extension BuildMusclesViewController {
     public func updateSearchController(searchBarText: String?) {
         
         if let searchText = searchBarText?.lowercased(), !searchText.isEmpty {
-                    filteredExercise = getList.filter { $0.muscleGroup.lowercased().contains(searchText) }
+                    filteredExercise = getList.filter { $0.muscleGroup?.lowercased().contains(searchText) ?? false }
                 } else {
                     filteredExercise = []
                 }
                 
                 tableView.reloadData()
     }
+    
+    
     
 }
 

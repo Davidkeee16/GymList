@@ -9,9 +9,9 @@ import UIKit
 
 class BeStrongerViewController: UIViewController {
     
-    var exercise: [Exercise] = []
+    var exercise: [ExerciseEntity] = []
     
-    var getList: [Exercise] {
+    var getList: [ExerciseEntity] {
         exercise
     }
     
@@ -61,8 +61,7 @@ extension BeStrongerViewController: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         let cell = tableView.dequeueReusableCell(withIdentifier: Cells.exerciseCell) as! ListCell
-        let image = getList[indexPath.row]
-        cell.set(image: image)
+        
        
         
         

@@ -18,27 +18,14 @@ struct Exercise: Decodable {
     let muscleImageUrl: String
 }
 
-func fetchExercises() {
-    
-    guard let url = URL(string: "http://127.0.0.1:8000/exercise/lose-weight") else { return }
-    
-    URLSession.shared.dataTask(with: url) { data, response, error in
-        guard let data = data else { return }
-        do {
-            let decoded = try JSONDecoder().decode([Exercise].self, from: data)
-            print(decoded)
-        } catch {
-            print("Decoded error:", error)
-        }
-    }.resume()
-}
 
+/*
 extension Exercise {
     static func loadBuildMuscles(completion: @escaping ([Exercise])-> Void) {
         guard let url = URL(string: "http://127.0.0.1:8000/exercise/build-muscle") else { return }
         
         URLSession.shared.dataTask(with: url) { data, _, error in
-            if let error = error {
+            if error != nil {
                 print("Error1")
                 return
             }
@@ -55,5 +42,6 @@ extension Exercise {
             
         }.resume()
     }
-    
-}
+    */
+
+
